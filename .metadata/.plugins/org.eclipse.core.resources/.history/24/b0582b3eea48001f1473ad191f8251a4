@@ -1,0 +1,13 @@
+package com.techlabs.hybernate.dao;
+
+import com.techlabs.hybernate.entity.Student;
+
+public class StudentDaoImpl implements StudentDao {
+
+	@Override
+	public void save(Student student) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

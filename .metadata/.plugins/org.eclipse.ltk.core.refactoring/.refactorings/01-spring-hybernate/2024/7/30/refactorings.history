@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Student.java&apos; to &apos;03-spring-rest-hybernate/src/main/java/com.techlabs.app.entity&apos;&#x0D;&#x0A;- Original project: &apos;01-spring-hybernate&apos;&#x0D;&#x0A;- Destination element: &apos;03-spring-rest-hybernate/src/main/java/com.techlabs.app.entity&apos;&#x0D;&#x0A;- Original element: &apos;com.techlabs.hybernate.entity.Student.java&apos;" description="Copy compilation unit" destination="=03-spring-rest-hybernate/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.techlabs.app.entity" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.techlabs.hybernate.entity{Student.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1721887644119" units="1" version="1.0"/>
+</session>

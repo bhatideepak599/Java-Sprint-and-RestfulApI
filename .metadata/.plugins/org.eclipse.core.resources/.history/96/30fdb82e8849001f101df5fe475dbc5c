@@ -1,0 +1,57 @@
+package com.techlabs.hybernate.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.techlabs.hybernate.entity.Student;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
+
+@Repository
+public class StudentDaoImpl implements StudentDao {
+	
+	EntityManager entityManager;
+	
+
+	public StudentDaoImpl(EntityManager entityManager) {
+		super();
+		this.entityManager = entityManager;
+	}
+
+	
+	@Override
+	@Transactional
+	
+	public void save(Student student) {
+		this.entityManager.persist(student);
+
+	}
+
+
+	@Override
+	public List<Student> getAllStudents() {
+		TypedQuery<Student> query=entityManager.createQuery("select s from Student s", Student.class);
+		List<Student> lst=query.getResultList();
+		
+		return lst;
+	}
+
+
+	@Override
+	public Student getStudentById(int id) {
+		
+		return entityManager.find(Student.class, id);
+	}
+
+
+	@Override
+	public List<Student> getStudentByFirstName(String string) {
+		TypedQuery<Student> query= entityManager.createQuery("select s from Student s where firstName=?",Student.class);
+		query.setParameter(1, string);
+		return query.getResultList();
+	}
+
+}

@@ -1,0 +1,7 @@
+1721983758727	Rename type 'StudentController'
+1721983821799	Rename type 'StudentService'
+1721983858955	Rename type 'StudentServiceImpl'
+1721983884128	Rename type 'StudentRepository'
+1721983922379	Rename type 'StudentErrorResponse'
+1721983941546	Rename type 'StudentExceptionHandler'
+1721983963219	Rename type 'StudentNotFoundException'
