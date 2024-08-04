@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techlabs.app.dto.RequestDto;
@@ -17,6 +18,7 @@ import com.techlabs.app.dto.ResponseDto;
 import com.techlabs.app.entity.Employee;
 import com.techlabs.app.exception.EmployeeNotFoundException;
 import com.techlabs.app.service.EmployeeService;
+import com.techlabs.app.util.PageResponse;
 
 import jakarta.validation.Valid;
 
@@ -31,22 +33,24 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/employees")
-	public ResponseEntity<List<ResponseDto>> getAllEmployees() {
-
-		return new ResponseEntity<List<ResponseDto>>(employeeService.getAllEmployees(), HttpStatus.OK);
+	public ResponseEntity<PageResponse<ResponseDto>> getAllEmployees(@RequestParam(name="page",defaultValue = "0") int page ,
+			@RequestParam(name="size",defaultValue = "2") int size ,
+			@RequestParam(name="sortBy",defaultValue = "id") String sortBy,
+			@RequestParam(name="direction",defaultValue = "asc") String direction) {
+		
+		return new ResponseEntity<PageResponse<ResponseDto>>(employeeService.getAllEmployees(page,size,sortBy,direction), HttpStatus.OK);
 	}
 
+	
 	@GetMapping("/employees/{sid}")
 	public ResponseEntity<ResponseDto> getEmployeeById(@Valid @PathVariable(name = "sid") int id) {
 
-		ResponseDto employee = employeeService.getEmployeeById(id);
-
-		return new ResponseEntity<ResponseDto>(employee, HttpStatus.CREATED);
+		return null;
 	}
 
 	@DeleteMapping("/employees/{sid}")
 	public void deleteEmployee(@PathVariable(name = "sid") int id) {
-		ResponseDto employee = employeeService.getEmployeeById(id);
+		employeeService.getEmployeeById(id);
 		employeeService.deleteEmployee(id);
 
 	}

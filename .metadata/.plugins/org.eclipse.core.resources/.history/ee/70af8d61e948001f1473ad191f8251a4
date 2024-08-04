@@ -1,5 +1,0 @@
-package com.techlabs.hybernate.dao;
-
-public interface StudentDao {
-
-}

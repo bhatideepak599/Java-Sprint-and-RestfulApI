@@ -1,7 +1,0 @@
-package com.techlabs.hybernate.dao;
-
-import com.techlabs.hybernate.entity.Student;
-
-public interface StudentDao {
-	public void save(Student student);
-}

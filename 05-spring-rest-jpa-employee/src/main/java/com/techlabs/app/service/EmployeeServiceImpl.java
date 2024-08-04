@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.techlabs.app.dto.RequestDto;
@@ -11,6 +15,7 @@ import com.techlabs.app.dto.ResponseDto;
 import com.techlabs.app.entity.Employee;
 import com.techlabs.app.exception.EmployeeNotFoundException;
 import com.techlabs.app.repository.EmployeeRepository;
+import com.techlabs.app.util.PageResponse;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -22,8 +27,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<ResponseDto> getAllEmployees() {
-		return getList(employeeRepository.findAll());
+	public PageResponse<ResponseDto> getAllEmployees(int page, int size,String sortBy,String direction) {
+		
+		Sort sort=direction.equalsIgnoreCase(Sort.Direction.ASC.name())?Sort.by(sortBy).ascending():Sort.by(sortBy).descending();
+		Pageable pageable = PageRequest.of(page, size,sort);
+		Page<Employee> all = employeeRepository.findAll(pageable);
+
+		if (all.getContent().isEmpty()) {
+			throw new EmployeeNotFoundException("No Employee Found");
+		}
+
+		List<ResponseDto> list = getList(all.getContent());
+
+		return new PageResponse<ResponseDto>(list, all.getNumber(), all.getNumberOfElements(), all.getTotalElements(),
+				all.getTotalPages(), all.isLast());
 	}
 
 	@Override
@@ -162,5 +179,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		return lst;
 	}
+
+	@Override
+	public List<ResponseDto> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }
