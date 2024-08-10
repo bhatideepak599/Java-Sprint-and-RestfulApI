@@ -34,44 +34,6 @@ public class BlogServiceImpl implements BlogService {
 		return getBlogsDtoList(blogs);
 	}
 
-	private List<BlogDto> getBlogsDtoList(List<Blog> blogs) {
-		List<BlogDto> blogsDtos = new ArrayList<>();
-		for (Blog b : blogs) {
-			blogsDtos.add(fromBlogToBlogDto(b));
-		}
-		return blogsDtos;
-	}
-
-	private BlogDto fromBlogToBlogDto(Blog b) {
-		BlogDto dto = new BlogDto();
-		dto.setId(b.getId());
-		dto.setCategory(b.getCategory());
-		dto.setData(b.getData());
-		dto.setDate(b.getDate());
-		dto.setTitle(b.getTitle());
-		dto.setPublished(b.isPublished());
-		if (b.getComments() != null) {
-			dto.setCommentsDto(b.getComments().stream().map(commentService::commentToCommentDto).toList());
-		}
-		return dto;
-	}
-
-	private Blog fromBlogDtoToBlog(BlogDto b) {
-		Blog blog = new Blog();
-		blog.setId(b.getId());
-		blog.setCategory(b.getCategory());
-		blog.setData(b.getData());
-		blog.setDate(new Date()); // Set current date
-		blog.setTitle(b.getTitle());
-		blog.setPublished(b.isPublished());
-
-		if (b.getCommentsDto() != null) {
-			blog.setComments(b.getCommentsDto().stream()
-					.map(commentDto -> commentService.commentDtoToComment(commentDto, blog)).toList());
-		}
-		return blog;
-	}
-
 	@Override
 	public BlogDto saveBlog(BlogDto blogDto) {
 		blogDto.setId(0);
@@ -127,10 +89,10 @@ public class BlogServiceImpl implements BlogService {
 			throw new NotFoundException("No Comment Found with Id : " + cId);
 		Blog blog = byId.get();
 		Comment comment = byId2.get();
-		
+
 		comment.setBlog(blog);
 		commentRepository.save(comment);
-		
+
 		blog.getComments().add(comment);
 		blogRepository.save(blog);
 
@@ -151,16 +113,55 @@ public class BlogServiceImpl implements BlogService {
 			throw new NotFoundException("No Comment Found with Id : " + cId);
 		Blog blog = byId.get();
 		Comment comment = byId2.get();
-		
+
 		comment.setBlog(null);
 		commentRepository.save(comment);
-		
+
 		blog.getComments().remove(comment);
 		blogRepository.save(blog);
 
 		BlogDto fromBlogToBlogDto = fromBlogToBlogDto(blog);
 
 		return fromBlogToBlogDto;
+	}
+	@Override
+	public BlogDto fromBlogToBlogDto(Blog b) {
+		BlogDto dto = new BlogDto();
+		dto.setId(b.getId());
+		dto.setCategory(b.getCategory());
+		dto.setData(b.getData());
+		dto.setDate(b.getDate());
+		dto.setTitle(b.getTitle());
+		dto.setPublished(b.isPublished());
+		if (b.getComments() != null) {
+			dto.setCommentsDto(b.getComments().stream().map(commentService::commentToCommentDto).toList());
+		}
+		return dto;
+	}
+
+	private Blog fromBlogDtoToBlog(BlogDto b) {
+		Blog blog = new Blog();
+		blog.setId(b.getId());
+		blog.setCategory(b.getCategory());
+		blog.setData(b.getData());
+		blog.setDate(new Date()); //
+		blog.setTitle(b.getTitle());
+		blog.setPublished(b.isPublished());
+
+		if (b.getCommentsDto() != null) {
+			blog.setComments(b.getCommentsDto().stream()
+					.map(commentDto -> commentService.commentDtoToComment(commentDto, blog)).toList());
+		}
+		return blog;
+	}
+	
+
+	private List<BlogDto> getBlogsDtoList(List<Blog> blogs) {
+		List<BlogDto> blogsDtos = new ArrayList<>();
+		for (Blog b : blogs) {
+			blogsDtos.add(fromBlogToBlogDto(b));
+		}
+		return blogsDtos;
 	}
 
 }

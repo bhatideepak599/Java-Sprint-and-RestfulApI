@@ -1,0 +1,26 @@
+package com.techlabs.app.dto;
+
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class CourseDto {
+	
+	private int id;
+	@NotBlank
+	private String title;
+	@JsonIgnore
+	private List<StudentDto> students = new ArrayList<>();
+}

@@ -1,6 +1,8 @@
 package com.techlabs.app.controller;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,8 @@ import com.techlabs.app.service.InstructorService;
 @RestController
 @RequestMapping("/api/instructor")
 public class InstructorController {
+	 
+	Logger logger=LoggerFactory.getLogger(InstructorController.class);
 
 	private InstructorService instructorService;
 	private CourseService courseService;
@@ -30,6 +34,7 @@ public class InstructorController {
 
 	@GetMapping
 	public List<Instructor> getAll() {
+		logger.debug("Starting get All intructors method with trace log level");
 		return instructorService.getAll();
 	}
 

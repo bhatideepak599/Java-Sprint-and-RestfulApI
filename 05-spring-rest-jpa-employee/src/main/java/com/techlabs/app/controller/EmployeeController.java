@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.techlabs.app.dto.RequestDto;
 import com.techlabs.app.dto.ResponseDto;
-import com.techlabs.app.entity.Employee;
-import com.techlabs.app.exception.EmployeeNotFoundException;
+
 import com.techlabs.app.service.EmployeeService;
 import com.techlabs.app.util.PageResponse;
 

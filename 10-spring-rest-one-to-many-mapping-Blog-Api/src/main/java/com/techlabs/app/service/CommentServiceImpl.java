@@ -2,9 +2,11 @@ package com.techlabs.app.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.techlabs.app.dto.BlogDto;
 import com.techlabs.app.dto.CommentDto;
 import com.techlabs.app.entity.Blog;
 import com.techlabs.app.entity.Comment;
@@ -75,6 +77,29 @@ public class CommentServiceImpl implements CommentService {
 			comments.add(commentToCommentDto(c));
 		}
 		return comments;
+	}
+
+	@Override
+	public String deleteComment(int id) {
+		Optional<Comment> byId = commentRepository.findById(id);
+		if(byId.isEmpty()) throw new NotFoundException("Comment Not Found With id: "+id);
+		Comment comment = byId.get();
+		Blog blog = comment.getBlog();
+		blog.getComments().remove(comment);
+		blogRepository.save(blog);
+		comment.setBlog(null);
+		commentRepository.delete(comment);
+		
+		return "Comment Deleted Successfully";
+	}
+
+	@Override
+	public Blog getBlogByCommentId(int id) {
+		Optional<Comment> byId = commentRepository.findById(id);
+		if(byId.isEmpty()) throw new NotFoundException("Comment Not Found With id: "+id);
+		Comment comment = byId.get();
+		Blog blog = comment.getBlog();
+		return blog;
 	}
 
 }

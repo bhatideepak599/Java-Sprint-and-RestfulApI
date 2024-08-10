@@ -1,0 +1,71 @@
+2024-08-07T09:12:36.202+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-07T09:12:36.202+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-08-07T09:12:36.204+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-08-07T09:12:37.362+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [http-nio-8082-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 690 ms
+2024-08-07T09:12:43.029+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [http-nio-8082-exec-4] c.t.app.controller.BlogController        : Get All blogs method started
+2024-08-07T09:12:43.212+05:30 DEBUG 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [http-nio-8082-exec-4] org.hibernate.SQL                        : 
+    select
+        b1_0.id,
+        b1_0.category,
+        b1_0.data,
+        b1_0.date,
+        b1_0.published,
+        b1_0.title 
+    from
+        blog b1_0
+2024-08-07T09:12:43.261+05:30 DEBUG 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [http-nio-8082-exec-4] org.hibernate.SQL                        : 
+    select
+        c1_0.blog_id,
+        c1_0.id,
+        c1_0.description 
+    from
+        comment c1_0 
+    where
+        c1_0.blog_id=?
+2024-08-07T09:12:43.263+05:30 TRACE 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [http-nio-8082-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:INTEGER) <- [3]
+2024-08-07T09:12:43.279+05:30 DEBUG 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [http-nio-8082-exec-4] org.hibernate.SQL                        : 
+    select
+        c1_0.blog_id,
+        c1_0.id,
+        c1_0.description 
+    from
+        comment c1_0 
+    where
+        c1_0.blog_id=?
+2024-08-07T09:12:43.280+05:30 TRACE 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [http-nio-8082-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:INTEGER) <- [4]
+2024-08-07T09:12:43.282+05:30 DEBUG 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [http-nio-8082-exec-4] org.hibernate.SQL                        : 
+    select
+        c1_0.blog_id,
+        c1_0.id,
+        c1_0.description 
+    from
+        comment c1_0 
+    where
+        c1_0.blog_id=?
+2024-08-07T09:12:43.283+05:30 TRACE 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [http-nio-8082-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:INTEGER) <- [5]
+2024-08-07T09:16:57.604+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-08-07T09:16:57.626+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [Thread-11] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-07T09:16:57.629+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2024-08-07T09:16:57.637+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2024-08-07T09:16:57.720+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] com.techlabs.app.Application             : Starting Application using Java 21.0.3 with PID 25200 (D:\SpringFolder\10-spring-rest-one-to-many-mapping-Blog-Api\target\classes started by bhati in D:\SpringFolder\10-spring-rest-one-to-many-mapping-Blog-Api)
+2024-08-07T09:16:57.720+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] com.techlabs.app.Application             : No active profile set, falling back to 1 default profile: "default"
+2024-08-07T09:16:57.932+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-07T09:16:57.943+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10 ms. Found 2 JPA repository interfaces.
+2024-08-07T09:16:58.060+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-08-07T09:16:58.060+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-07T09:16:58.061+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-07T09:16:58.091+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-07T09:16:58.091+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 368 ms
+2024-08-07T09:16:58.128+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-07T09:16:58.130+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-07T09:16:58.138+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-07T09:16:58.138+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2024-08-07T09:16:58.155+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection com.mysql.cj.jdbc.ConnectionImpl@49d85c0b
+2024-08-07T09:16:58.155+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2024-08-07T09:16:58.216+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-07T09:16:58.240+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-07T09:16:58.334+05:30  WARN 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-07T09:16:58.430+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-08-07T09:16:58.439+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2024-08-07T09:16:58.443+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] com.techlabs.app.Application             : Started Application in 0.753 seconds (process running for 561.176)
+2024-08-07T09:16:58.445+05:30  INFO 25200 --- [10-spring-rest-one-to-many-mapping-Blog-Api] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.techlabs.app.dto.BlogDto;
 import com.techlabs.app.dto.CommentDto;
+import com.techlabs.app.entity.Blog;
 import com.techlabs.app.service.BlogService;
 import com.techlabs.app.service.BlogServiceImpl;
 import com.techlabs.app.service.CommentService;
@@ -21,7 +23,7 @@ import com.techlabs.app.service.CommentServiceImpl;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/comment")
+@RequestMapping("/api/comments")
 public class CommentController {
 	private final BlogService blogService;
 	private final CommentService commentService;
@@ -37,7 +39,7 @@ public class CommentController {
 		return new ResponseEntity<>(comments, HttpStatus.OK);
 	}
 	@PostMapping
-	public ResponseEntity<CommentDto> saveBlog(@Valid @RequestBody CommentDto commentDto) {
+	public ResponseEntity<CommentDto> saveComment(@Valid @RequestBody CommentDto commentDto) {
 		CommentDto savedComment = commentService.saveComment(commentDto);
 		return new ResponseEntity<>(savedComment, HttpStatus.OK);
 	}
@@ -48,6 +50,21 @@ public class CommentController {
 		List<CommentDto> comments = commentService.getCommentByBlogId(id);
 		return new ResponseEntity<>(comments, HttpStatus.OK);
 	}
+	
+	@DeleteMapping("/{id}")
+	public  ResponseEntity<String> deleteComment(@PathVariable(name = "id") int id) {
+		String deleted = commentService.deleteComment(id);
+		return new ResponseEntity<>(deleted, HttpStatus.OK);
+
+	}
+	
+	@GetMapping("/blog/byCommentId/{id}")
+	public ResponseEntity<BlogDto> getBlogByCommentId(@PathVariable(name = "id") int id) {
+		Blog blog = commentService.getBlogByCommentId(id);
+		BlogDto fromBlogToBlogDto = blogService.fromBlogToBlogDto(blog);
+		return new ResponseEntity<>(fromBlogToBlogDto, HttpStatus.OK);
+	}
+	
 	
 
 }
